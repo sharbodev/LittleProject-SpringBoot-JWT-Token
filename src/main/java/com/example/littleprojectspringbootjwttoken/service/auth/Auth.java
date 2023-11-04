@@ -15,12 +15,12 @@ public class Auth {
     private final JwtUtils jwtUtils;
     private final PasswordEncoder passwordEncoder;
 
-    public void save(String fullName, String email, String password, Role role) {
+    public void save(String email, String password, String fullName, Role role) {
         User user = new User();
         user.setEmail(email);
-        user.setRole(role);
+        user.setPassword(passwordEncoder.encode(password));
         user.setFullName(fullName);
-        user.setPassword(password);
+        user.setRole(role);
         if (userRepository.existsByEmail(email)){
             throw new RuntimeException("user exists email");
         }
