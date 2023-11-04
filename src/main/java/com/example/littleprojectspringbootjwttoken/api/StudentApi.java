@@ -21,37 +21,37 @@ public class StudentApi {
 
     @PostMapping("save/student")
     @Operation(summary = "save", description = "save for all student")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DIRECTOR','MANAGER','TEACHER','STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER')")
     public StudentResponse save(@RequestBody StudentRequest request, @RequestParam Long id) {
         return studentService.save(request, id);
     }
 
     @GetMapping("find/by/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DIRECTOR','MANAGER','TEACHER','STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','TEACHER','STUDENT')")
     public StudentResponse findById(@PathVariable Long id) {
         return studentService.findById(id);
     }
 
     @GetMapping("find/all")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DIRECTOR','MANAGER','TEACHER','STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','TEACHER','STUDENT')")
     public List<StudentResponse> findAll() {
         return studentService.findAll();
     }
 
     @DeleteMapping("delete/by/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DIRECTOR','MANAGER','TEACHER','STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER')")
     public String deleteById(@PathVariable Long id) {
         return studentService.deleteById(id);
     }
 
     @DeleteMapping("delete/all")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DIRECTOR','MANAGER','TEACHER','STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER')")
     public String deleteAll() {
         return studentService.deleteAll();
     }
 
     @PutMapping("update/by/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DIRECTOR','MANAGER','TEACHER','STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER')")
     public StudentResponse updateById(@PathVariable Long id, @RequestBody StudentRequest studentRequest) {
         return studentService.update(id, studentRequest);
     }
