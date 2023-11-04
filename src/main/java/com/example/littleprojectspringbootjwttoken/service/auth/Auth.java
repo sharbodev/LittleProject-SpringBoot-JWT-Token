@@ -20,7 +20,7 @@ public class Auth {
         user.setEmail(email);
         user.setRole(role);
         user.setFullName(fullName);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(password);
         if (userRepository.existsByEmail(email)){
             throw new RuntimeException("user exists email");
         }
