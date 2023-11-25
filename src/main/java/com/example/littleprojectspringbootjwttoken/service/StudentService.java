@@ -13,6 +13,7 @@ import com.example.littleprojectspringbootjwttoken.model.Company;
 import com.example.littleprojectspringbootjwttoken.model.Course;
 import com.example.littleprojectspringbootjwttoken.model.Groups;
 import com.example.littleprojectspringbootjwttoken.model.Student;
+import com.example.littleprojectspringbootjwttoken.model.enums.Role;
 import com.example.littleprojectspringbootjwttoken.repository.CompanyRepository;
 import com.example.littleprojectspringbootjwttoken.repository.CourseRepository;
 import com.example.littleprojectspringbootjwttoken.repository.GroupsRepository;
@@ -35,6 +36,7 @@ public class StudentService {
 
     public StudentResponse save(StudentRequest studentRequest, Long id) {
         Student student = studentEdit.create(studentRequest);
+        student.setRole(Role.STUDENT);
         Groups groups = groupsRepository.findById(id).orElseThrow();
         student.setGroups(groups);
         return studentView.map(studentRepository.save(student));

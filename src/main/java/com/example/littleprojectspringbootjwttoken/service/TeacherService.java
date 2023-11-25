@@ -10,6 +10,7 @@ import com.example.littleprojectspringbootjwttoken.mapper.view.TeacherView;
 import com.example.littleprojectspringbootjwttoken.model.Company;
 import com.example.littleprojectspringbootjwttoken.model.Course;
 import com.example.littleprojectspringbootjwttoken.model.Teacher;
+import com.example.littleprojectspringbootjwttoken.model.enums.Role;
 import com.example.littleprojectspringbootjwttoken.repository.CourseRepository;
 import com.example.littleprojectspringbootjwttoken.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class TeacherService {
 
     public TeacherResponse save(TeacherRequest teacherRequest, Long id) {
         Teacher teacher = teacherEdit.create(teacherRequest);
+        teacher.setRole(Role.TEACHER);
         Course course = courseRepository.findById(id).orElseThrow();
         teacher.setCourse(course);
         return teacherView.map(teacherRepository.save(teacher));
